@@ -23,13 +23,13 @@ impl fmt::Display for LogLevel {
 
 pub struct Logger<'a> {
     pub log_level: &'a LogLevel,
-    pub formatter: fn (String, level: &LogLevel) -> String,
+    pub formatter: fn (&str, level: &LogLevel) -> String,
 }
 
 impl Logger<'_>  {
     pub fn log(&self, message: &str, level: &LogLevel) {
-        if get_log_level_number(level) >= get_log_level_number(self.log_level){
-            let format_message = (self.formatter)(message.to_string(), level);
+        if get_log_level_number(level) >= get_log_level_number(self.log_level) {
+            let format_message = (self.formatter)(message, level);
             println!("{}", format_message);
         }
     }
@@ -60,6 +60,6 @@ fn get_log_level_number(log_level: &LogLevel) -> u8 {
     }
 }
 
-pub fn formatter(message: String, level: &LogLevel) -> String {
+pub fn formatter(message: &str, level: &LogLevel) -> String {
     format!("[{: <7}] {}", level.to_string(), message)
 }
