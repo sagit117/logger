@@ -4,10 +4,10 @@
 use std::fmt::{self, write};
 
 pub enum LogLevel {
-    DEBUG = 10,
-    INFO = 20,
-    WARNING = 30,
-    ERROR = 40,
+    DEBUG,
+    INFO,
+    WARNING,
+    ERROR,
 }
 
 impl fmt::Display for LogLevel {
